@@ -33,7 +33,7 @@ interface ITotalWarehouse extends IClothesWarehouse, IStationeryWarehouse, IAppl
 // главный объект со всеми данными, должен подходить под формат TotalWarehouse
 
 const totalData: ITotalWarehouse = {
-	jackets: 5,
+	jackets: 'empty',
 	hats: 'empty',
 	socks: 'empty',
 	pants: 15,
@@ -57,7 +57,7 @@ const totalData: ITotalWarehouse = {
 // Товары через запятую, в конце её не должно быть. Пробел после двоеточия, в конце строки его нет.
 
 function printReport(data: ITotalWarehouse):string {
-	const result: string = Object.entries(data).filter((item) => item[1] === 'empty').reduce((res, item) => `${res} ${item[0]},`,"");
+	const result: string = Object.entries(data).filter(([key, value]) => value === 'empty').reduce((res, item) => `${res} ${item[0]},`,"");
 	if(result.trim().length) {
 		return `We need this items:${result.slice(0, -1)}`;
 	} else {
